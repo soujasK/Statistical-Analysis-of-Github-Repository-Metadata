@@ -398,8 +398,7 @@ elif page == "EDA":
 
     st.info(f"**Inference:** Highly right-skewed (skewness = {df['stars'].skew():.2f}). "
             f"Most repos have modest stars while a few viral repos dominate.")
-    st.warning("**Interpretation:** The skewed distribution suggests stars follow a "
-               "log-normal pattern. A small number of repositories attract a "
+    st.warning("**Interpretation:** A small number of repositories attract a "
                "disproportionately large share of community attention.")
 
     col1, col2 = st.columns(2)
@@ -567,11 +566,7 @@ elif page == "Correlation":
         fig.tight_layout()
         st.pyplot(fig); plt.close()
 
-        st.info("**Inference:** Polynomial features capture non-linear relationships. "
-                "forks2 and forksissues show strong correlation with stars.")
-        st.warning("**Interpretation:** Polynomial features amplify the signal from "
-                   "already-popular repos. A repo with 50K forks has 2.5 billion "
-                   "in forks squared, creating a much stronger signal in regression models.")
+        
 
 # ──────────────────────────────────────────────
 # ANOVA
@@ -635,11 +630,8 @@ elif page == "ANOVA":
     st.pyplot(fig); plt.close()
 
     st.info(f"**Inference:** F = {anova_f:.4f}, p = {anova_p:.2e}. Language "
-            f"significantly affects popularity. Eta squared = {eta_sq:.4f} means "
-            f"language explains {eta_sq*100:.1f}% of variance in stars.")
-    st.warning("**Interpretation:** While statistically significant, the small effect "
-               "size indicates language alone is not the dominant factor. "
-               "Other factors beyond language contribute more to star variance.")
+            f"significantly affects popularity.")
+  
 
 # ──────────────────────────────────────────────
 # REGRESSION
@@ -734,7 +726,7 @@ elif page == "Isolation Forest":
     st.markdown("### Top 10 Most Anomalous Repositories")
     st.markdown("Found without seeing star counts.")
     top10 = anomalies.sort_values('anomaly_score').head(10)[
-        ['repo_name','language','forks','issues','repo_age','stars','anomaly_score']
+        ['repo_name','forks','issues','repo_age','stars','anomaly_score']
     ]
     st.dataframe(top10, hide_index=True)
 
