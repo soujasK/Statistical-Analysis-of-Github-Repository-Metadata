@@ -756,4 +756,4 @@ elif page == "Isolation Forest":
     st.info(f"**Inference:** {len(anomalies)} anomalous repos detected "
             f"({len(anomalies)/len(df)*100:.1f}%). The model flagged tensorflow, "
             f"pytorch and react as most anomalous without ever seeing their star counts.")
-    st.warning("**Interpretation:** The model identified several well-known repositories as anomalous in this dataset"
+    st.warning("**Interpretation:** The model identified several well-known repositories as anomalous in this dataset")
